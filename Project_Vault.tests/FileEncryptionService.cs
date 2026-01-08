@@ -21,8 +21,8 @@ namespace Project_Vault_Test
             File.WriteAllText(input, "secret data");
 
             // Act
-            _encryptor.EncryptFile(input, encrypted, "password123");
-            _encryptor.DecryptFile(encrypted, output, "password123");
+            _encryptor.EncryptFile(input, encrypted, "P@ssw0rd");
+            _encryptor.DecryptFile(encrypted, output, "P@ssw0rd");
 
             var result = File.ReadAllText(output);
 
@@ -43,7 +43,7 @@ namespace Project_Vault_Test
             File.WriteAllText(input, plaintext);
 
             // Act
-            encryptor.EncryptFile(input, encrypted, "password");
+            encryptor.EncryptFile(input, encrypted, "P@ssw0rd");
 
             var encryptedBytes = File.ReadAllBytes(encrypted);
             var encryptedText = Encoding.UTF8.GetString(encryptedBytes);
@@ -65,11 +65,11 @@ namespace Project_Vault_Test
 
             File.WriteAllText(input, "data");
 
-            encryptor.EncryptFile(input, encrypted, "correct");
+            encryptor.EncryptFile(input, encrypted, "P@ssw0rd");
 
             // Act / Assert
             Assert.ThrowsAny<CryptographicException>(() =>
-                encryptor.DecryptFile(encrypted, output, "wrong"));
+                encryptor.DecryptFile(encrypted, output, "password"));
         }
 
         [Fact]
@@ -85,8 +85,8 @@ namespace Project_Vault_Test
             File.WriteAllText(input, string.Empty);
 
             // Act
-            encryptor.EncryptFile(input, encrypted, "password");
-            encryptor.DecryptFile(encrypted, output, "password");
+            encryptor.EncryptFile(input, encrypted, "P@ssw0rd");
+            encryptor.DecryptFile(encrypted, output, "P@ssw0rd");
 
             // Assert
             Assert.Equal(string.Empty, File.ReadAllText(output));
@@ -104,7 +104,7 @@ namespace Project_Vault_Test
             File.WriteAllText(input, "plaintext");
 
             // Act
-            encryptor.EncryptFile(input, encrypted, "password");
+            encryptor.EncryptFile(input, encrypted, "P@ssw0rd");
 
             // Assert
             Assert.NotEqual(
