@@ -149,7 +149,7 @@ Rationale:
 ---
 
 ## Key Tests Implemented
-* Encrypt → Decrypt round-trip
+* Encrypt & Decrypt
 * Wrong password causes failure
 * Empty file handling
 * Ciphertext differs from plaintext
